@@ -10,7 +10,7 @@ export default function InvoiceForm() {
   const params = useParams()
 
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/invoices/' + params.id)
+    fetch('http://127.0.0.1:8000/api/invoices/' + params.id + '/')
       .then((res) => res.json())
       .then((parsedRes) => {
         setInvoice(parsedRes)

@@ -5,7 +5,7 @@ import Navbar from '../NavBar/Navbar'
 export default function InvoiceList() {
   const [invoices, setInvoices] = useState([])
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/invoices')
+    fetch('http://127.0.0.1:8000/api/invoices/')
       .then((res) => res.json())
       .then((results) => {
         setInvoices(results)

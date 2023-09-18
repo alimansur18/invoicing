@@ -9,7 +9,8 @@ export default function InvoiceForm() {
 
   function handleSubmit() {
     newInvoice.items = []
-    fetch('http://127.0.0.1:8000/api/invoices/new', {
+    fetch('http://127.0.0.1:8000/api/invoices/new/', 
+    {
       method: 'POST',
       body: JSON.stringify(newInvoice),
       headers: {
