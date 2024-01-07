@@ -4,8 +4,12 @@ import Navbar from '../NavBar/Navbar'
 
 export default function InvoiceList() {
   const [invoices, setInvoices] = useState([])
+  
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/invoices/')
+    const token = localStorage.getItem('access_token')
+    fetch('http://127.0.0.1:8000/api/invoices/', {
+      headers: { Authorization: `Bearer ${token}` }, 
+  })
       .then((res) => res.json())
       .then((results) => {
         setInvoices(results)

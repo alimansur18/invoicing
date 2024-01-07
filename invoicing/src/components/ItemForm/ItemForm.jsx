@@ -8,11 +8,13 @@ export default function ItemForm() {
   const navigate = useNavigate()
   const { id } = useParams()
   function handleSubmit() {
+    const token = localStorage.getItem('access_token')
     fetch('http://127.0.0.1:8000/api/invoices/' + id.toString() + '/items/', {
       method: 'POST',
       body: JSON.stringify(newItem),
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
       },
     }).then((res) => navigate('/' + id))
   }

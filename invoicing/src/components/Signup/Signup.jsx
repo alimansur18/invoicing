@@ -15,6 +15,7 @@ const SignUp = () => {
     const initialValues = {
         name: '',
         email: '',
+        username : '',
         password: '',
     }
     const validationSchema = Yup.object({
@@ -23,6 +24,8 @@ const SignUp = () => {
         email: Yup.string()
             .email('Invalid email address')
             .required('Email is required'),
+            username : Yup.string()
+            .required('Username is required'),
         password: Yup.string()
             .required('Password is required')
             .min(6, 'Password must be at least 6 characters')
@@ -88,6 +91,21 @@ const SignUp = () => {
                                 />
                                 {formik.errors.email && formik.touched.email ? (
                                     <small className='text-danger'>{formik.errors.email}</small>
+                                ) : null}
+                            </div>
+
+                            <div className="form-group">
+                                <label htmlFor='email'>Username</label>
+                                <input type="text"
+                                    className={formik.errors.username && formik.touched.username ? "form-control is-invalid" : "form-control"}
+                                    name='username'
+                                    id='username'
+                                    value={formik.values.username}
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                />
+                                {formik.errors.username && formik.touched.username ? (
+                                    <small className='text-danger'>{formik.errors.username}</small>
                                 ) : null}
                             </div>
 

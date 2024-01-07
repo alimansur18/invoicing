@@ -14,12 +14,12 @@ const Login = () => {
     const navigate = useNavigate();
 
     const initialState = {
-        email: "",
+        username: "",
         password: ""
     };
 
     const validationSchema = (values) => Yup.object({
-        email: Yup.string().required("Email is required").email("Email not valid"),
+        username: Yup.string().required("Email is required"),
         password: Yup.string().required("Password is required")
     });
 
@@ -28,8 +28,9 @@ const Login = () => {
             .post('http://127.0.0.1:8000/api/user/signin/', values)
             .then((response) => { 
                 console.log(response.data);
-                localStorage.setItem("token", response.data.token);
-                localStorage.setItem("user", JSON.stringify(response.data.user));
+                localStorage.setItem("access_token", response.data.access_token);
+                localStorage.setItem("refresh_token", response.data.refresh_token);
+                localStorage.setItem("user", response.data.user);
                 setRequestResponse({
                     requestMessage: "Login successful",
                     className: "alert alert-success"
@@ -65,9 +66,9 @@ const Login = () => {
                                 return (
                                     <Form>
                                         <div className="form-group">
-                                            <label htmlFor="">Email</label>
-                                            <Field type="text" name="email" className="form-control" />
-                                            <ErrorMessage name="email">
+                                            <label htmlFor="">Username</label>
+                                            <Field type="text" name="username" className="form-control" />
+                                            <ErrorMessage name="username">
                                                 {(errorMessage) => (
                                                     <small className="text-danger">{errorMessage}</small>
                                                 )}

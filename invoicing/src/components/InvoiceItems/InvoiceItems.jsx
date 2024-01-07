@@ -10,7 +10,10 @@ export default function InvoiceForm() {
   const params = useParams()
 
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/invoices/' + params.id + '/')
+    const token = localStorage.getItem('access_token')
+    fetch('http://127.0.0.1:8000/api/invoices/' + params.id + '/', {
+      headers: { Authorization: `Bearer ${token}` }, 
+  })
       .then((res) => res.json())
       .then((parsedRes) => {
         setInvoice(parsedRes)
